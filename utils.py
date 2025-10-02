@@ -1,11 +1,12 @@
 
 
-def menu():
-    """Exibe o menu e retorna a opção selecionada.
-    
+def menu() -> None:
+    """ Exibe o menu e retorna a opção selecionada.
+
         Returns:
             str: A opção selecionada pelo usuário.
     """
+
     print("\tMenu de opções:")
     print(".1 - Bonus salario")
     print(".2 - identificador de triângulo")
@@ -13,7 +14,7 @@ def menu():
     print(".4 - Calculo de Média")
     print(".5 - Verificador de data valida")
     print(".6 - Verifica condição de voto")
-    print(".7 - Classificador de risco")
+    print(".7 - Classificador de risco de renda")
     print(".8 - Jogo de adivinhação")
     print(".9 - Desconto para cliente VIP")
     print(".10 - Validador de senha")
@@ -25,8 +26,7 @@ def menu():
 
 
 def CalculoBonusSalario(salario, tempo) -> float:
-   
-    """Calcula o bônus salarial com base no salário e tempo de empresa.
+    """ Calcula o bônus salarial com base no salário e tempo de empresa.
     
     Args:
         salario (float): O salário atual do funcionário.
@@ -59,7 +59,7 @@ def CalculoBonusSalario(salario, tempo) -> float:
 
 
 def IdentificadorTriangulo(lado1, lado2, lado3) -> str:
-    """Identifica o tipo de triângulo com base nos comprimentos dos lados.
+    """ Identifica o tipo de triângulo com base nos comprimentos dos lados.
     
     Args:
         lado1 (float): Comprimento do primeiro lado.
@@ -85,8 +85,7 @@ def IdentificadorTriangulo(lado1, lado2, lado3) -> str:
 
 
 def CalculadoraIMC(peso, altura) -> str:
-
-    """Calcula o Índice de Massa Corporal (IMC) e classifica o resultado.
+    """ Calcula o Índice de Massa Corporal (IMC) e classifica o resultado.
     
         Args:
             peso (float): O peso em quilogramas.
@@ -119,7 +118,7 @@ def CalculadoraIMC(peso, altura) -> str:
 
 
 def CalculaMedia(notas) -> float:
-    """Calcula a média de uma lista de notas.
+    """ Calcula a média de uma lista de notas.
     
         Args:
             notas (list of float): Lista contendo as notas.
@@ -127,6 +126,7 @@ def CalculaMedia(notas) -> float:
         Returns:
             float: A média das notas.
     """
+
     media = 0
     for i in range(len(notas)):
         media += notas[i]
@@ -134,5 +134,73 @@ def CalculaMedia(notas) -> float:
     media = media / len(notas)
 
     return media
+
+
+
+def DataEhValida(dia, mes, ano) -> bool:
+    """ Verifica se uma data é válida.
+    
+        Args:
+            dia (int): O dia do mês.
+            mes (int): O mês do ano.
+            ano (int): O ano.
+
+        Returns:
+            bool: True se a data for válida, False caso contrário.
+    """
+
+    if(ano < 0):
+        return False
+
+    elif(mes < 1 or mes > 12):
+        return False
+
+    elif(mes == 4 or mes == 6 or mes == 9 or mes == 11):
+        if(dia < 1 or dia > 30):
+            return False
+        else:
+            return True
+
+    elif(mes == 2):
+        if(ano % 4 == 0 and (ano % 100 != 0 or ano % 400 == 0)):
+            if(dia < 1 or dia > 29):
+                return False
+            else:
+                return True
+        else:
+            if(dia < 1 or dia > 28):
+                return False
+            else:
+                return True
+
+    else:
+        if(dia < 1 or dia > 31):
+            return False
+        else:
+            return True
+        
+
+
+def ClassificadorRiscoRenda(renda, dividas, idade) -> str:
+    """" Classifica o risco de crédito com base na renda, dívidas e idade.
+    
+        Args:
+            renda (float): Renda mensal
+            dividas (float): Valor total de dívidas mensais
+            idade (int): Idade do usuário
+            
+        Returns:
+            str: Classificação de risco ("Baixo", "Médio", "Alto" ou "Médio-baixo")"""
+    
+    if(renda >= 5000 and dividas < (renda * 0.3)):
+        return "Baixo"
+    elif(renda <= 5000 and dividas <= (renda * 0.5)):
+        return "Médio"
+    elif(renda < 2000  and dividas > (renda * 0.5)):
+        return "Alto"
+    else:
+        return "Médio-baixo"
+
+
 
 
