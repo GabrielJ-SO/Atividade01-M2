@@ -29,11 +29,11 @@ def CalculoBonusSalario(salario, tempo) -> float:
     """ Calcula o bônus salarial com base no salário e tempo de empresa.
     
     Args:
-        salario (float): O salário atual do funcionário.
-        tempo (int): O tempo de empresa em anos.
+        salario (float): Salário atual do funcionário.
+        tempo (int): Tempo de empresa em anos.
 
     Returns:
-        float: O salário final com o bônus aplicado.
+        float: Salário final com o bônus aplicado.
     """
 
     bonus = 0
@@ -67,7 +67,7 @@ def IdentificadorTriangulo(lado1, lado2, lado3) -> str:
         lado3 (float): Comprimento do terceiro lado.
 
     Returns:
-        str: O tipo de triângulo ("Equilátero", "Isósceles", "Escaleno" ou "Não é um triângulo").
+        str: Tipo de triângulo ("Equilátero", "Isósceles", "Escaleno" ou "Não é um triângulo").
     """
 
     if (lado1 + lado2 < lado3) or (lado2 + lado3 < lado1) or (lado1 + lado3 < lado2):
@@ -88,11 +88,11 @@ def CalculadoraIMC(peso, altura) -> str:
     """ Calcula o Índice de Massa Corporal (IMC) e classifica o resultado.
     
         Args:
-            peso (float): O peso em quilogramas.
-            altura (float): A altura em metros.
+            peso (float): Peso em quilogramas.
+            altura (float): Altura em metros.
 
         Returns:
-            str: A classificação do IMC.
+            str: Classificação do IMC.
     """
 
     imc = peso / (altura ** 2)
@@ -141,9 +141,9 @@ def DataEhValida(dia, mes, ano) -> bool:
     """ Verifica se uma data é válida.
     
         Args:
-            dia (int): O dia do mês.
-            mes (int): O mês do ano.
-            ano (int): O ano.
+            dia (int): Dia do mês.
+            mes (int): Mês.
+            ano (int): Ano.
 
         Returns:
             bool: True se a data for válida, False caso contrário.
@@ -203,4 +203,99 @@ def ClassificadorRiscoRenda(renda, dividas, idade) -> str:
 
 
 
+def CalculaPontuacao(cartas, cartasGab) -> int:
+    """ Calcula a pontuação do jogador com base nas cartas escolhidas.
+    
+        Args:
+            cartas (str): Sequência de cartas escolhidas pelo jogador.
+            cartasGab (list of str): Sequência correta de cartas.
 
+        Returns:
+            int: Pontuação final do jogador.
+    """
+
+    pontuacao = 0
+
+    if "CD" in cartas:
+        pontuacao += 5
+    
+    i = 0
+    for carta in cartas:
+        if carta == cartasGab[i]:
+            pontuacao += 10
+
+        if carta == 'A':
+            pontuacao += 5
+
+        i += 1
+
+    return pontuacao
+
+
+
+def CalculaDesconto(preco, vip) -> float:
+    """ Calcula o desconto para clientes VIP com base no preço do produto.
+    
+        Args:
+            preco (float): Preço do produto.
+            vip (str): Indica se o cliente é VIP ('S' para sim, 'N' para não).
+
+        Returns:
+            float: Valor do desconto aplicado.
+    """
+
+    if(preco >= 100):
+        if(vip == 'S'):
+            desconto = preco * 0.25
+        else:
+            desconto = preco * 0.20
+    elif(preco >= 50):
+        if(vip == 'S'):
+            desconto = preco * 0.15
+        else:
+            desconto = preco * 0.10
+    elif(preco < 50):
+        if(vip == 'S'):
+            desconto = preco * 0.05
+        else:
+            desconto = 0
+
+    return desconto
+
+
+
+def SenhaEhForte(senha) -> bool:
+    """ Verifica a segurança da senha.
+    
+        Args:
+            senha (str): Senha a ser verificada.
+
+        Returns:
+            bool: True se a senha for forte, False caso contrário.
+    """
+
+    senha_forte = False
+    tem_especial = False
+    tem_numero = False
+    tem_lower = False
+    tem_upper = False
+    especiais =  ['!', '@', '#', '$', '%']
+
+    for char in senha:
+
+        if char.isdigit():
+            tem_numero = True
+        if char.islower():
+            tem_lower = True
+        if char.isupper():
+            tem_upper = True
+
+    for especial in especiais:
+        if(especial in senha):
+            tem_especial = True
+            break
+
+    if(tem_numero and tem_lower and tem_upper and tem_especial):
+        senha_forte = True
+
+    return senha_forte

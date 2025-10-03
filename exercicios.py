@@ -116,3 +116,54 @@ def exercicio07() -> None:
     classificacao = utils.ClassificadorRiscoRenda(renda, dividas, idade)
     print(f"Sua Classificação de risco é: {classificacao}")
 
+
+
+def exercicio08() -> None:
+    """ Executa o exercício 8 - Jogo da adivinhação."""
+
+    print("\tExercício 8 - Jogo da adivinhação\n")
+
+    cartasGab = ['B', 'C', 'D','A']
+    
+    cartas = input("Digite a sequência de 4 cartas:")
+    cartas = cartas.upper()
+
+    pontuacao = utils.CalculaPontuacao(cartas, cartasGab)
+
+    print("A sequência de cartas era",cartasGab, "\n")
+    print("Pontuação final:", pontuacao, "\n")
+
+
+
+def exercicio09() -> None:
+    """ Executa o exercício 9 - Desconto para cliente VIP."""
+
+    print("\tExercício 9 - Desconto para cliente VIP\n")
+
+    preco = float(input("Qual o preço do produto? R$ "))
+    vip = input("O cliente é VIP? (S/N) ").upper()
+
+    desconto = utils.CalculaDesconto(preco, vip)
+
+    print(f"O valor do desconto é R$ {desconto:.2f}")
+
+
+
+def exercicio10() -> None:
+    """ Executa o exercício 10 - Validador de senha."""
+
+    print("\tExercício 10 - Validador de senha\n")
+
+    senha_invalida = True
+
+    while(senha_invalida):
+        senha = input("Digite a senha: ")
+        if(len(senha) < 8):
+            print("A senha deve conter no minimo 8 caracteres.")
+        else:
+            senha_invalida = False
+
+    if(utils.SenhaEhForte(senha)):
+        print("Sua senha é forte o suficiente!")
+    else:
+        print("Sua senha é fraca demais!")
